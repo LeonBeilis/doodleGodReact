@@ -1,4 +1,13 @@
-
+/* 
 .gameCard:hover:not(.border-primary) {
   background-color: rgb(235, 235, 235);
+} */
+
+.gameContainer {
+  width: 1000px;
+  background: yellow;
+  height: 700px;
+  align-items: center;
+  background: url('assets/game_bg.png');
+  padding: 100px;
 }

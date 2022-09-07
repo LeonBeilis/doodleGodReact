@@ -1,5 +1,5 @@
-import { useEffect } from "react";
-import { Card } from "react-bootstrap"
+import React, { createRef, useEffect, useRef, useState } from "react";
+import { Badge, Button, Card } from "react-bootstrap"
 import { CardListType, CardType } from "../../types/card.type";
 
 interface CardTypeInterface {
@@ -42,6 +42,7 @@ export const CardPreview = ({ card, setSelectedCards, selectedCards, setCards }:
             return newCards as CardListType | [];
         })
     }
+    const ref = useRef<HTMLButtonElement>(null);
     const handleOpen = (card: CardType) => {
         setSelectedCards((prevStateCards: CardListType) => {
             if (!prevStateCards.length) {
@@ -58,6 +59,7 @@ export const CardPreview = ({ card, setSelectedCards, selectedCards, setCards }:
                     //console.log('reset focus!');
                     card.selected = false;
                     prevCard.selected = false;
+                    ref.current?.blur();
                     return [];
                 }
             }
@@ -67,29 +69,37 @@ export const CardPreview = ({ card, setSelectedCards, selectedCards, setCards }:
                     handleShow(s[2]);
                 }
             })
-            //example of reveal new element
-            // if(prevCard.id === 1 && card.id === 3 || prevCard.id === 3 && card.id === 1){
-            //     handleShow(5);
-            // }
 
-            console.log('try to combine operation');
+            //console.log('combination already revealed or not available, continue to reset',card);
             card.selected = false;
             prevCard.selected = false;
+            ref.current?.blur();
             return [];
         });
     }
 
+    enum btnColorScheme {
+        active = 'primary',
+        idle = 'secondary'
+    };
+    const [btnVariant, setbtnVariant] = useState(card.selected ? 'primary' : 'secondary')
+
+    useEffect(() => {
+        if(selected) setbtnVariant(btnColorScheme.active)
+        else setbtnVariant(btnColorScheme.idle)
+      return () => {
+        setbtnVariant(btnColorScheme.active)
+      }
+    }, [selected])
+    
+
     return (
-        <Card className="gameCard" border={selected ? 'primary' : ""} onClick={() => {
+        <Button variant={btnVariant} size="lg" className="gameCard"
+            ref={ref}
+            onClick={ e => {
                 handleOpen(card)
             }}>
-            <Card.Body>
-                <Card.Title>{name}</Card.Title>
-            </Card.Body>
-        </Card>
+            {name} <Badge pill bg="primary">{id}</Badge>
+        </Button>
     )
-}
-
-function setCards(arg0: unknown) {
-    throw new Error("Function not implemented.");
 }

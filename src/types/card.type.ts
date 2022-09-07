@@ -1,3 +1,5 @@
+import { Row } from 'react-bootstrap'
+
 export interface CardType {
     id: number
     name: string
@@ -7,3 +9,4 @@ export interface CardType {
 }
 
 export type CardListType = CardType[];
+export type CardListInRow = typeof Row;
