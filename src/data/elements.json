@@ -1,0 +1,17 @@
+[
+    { "id": 1, "name": "boolean", "show": true, "deck": 1, "selected": false },
+    { "id": 2, "name": "int", "show": false, "deck": 1, "selected": false },
+    { "id": 3, "name": "BigInt", "show": false, "deck": 1, "selected": false },
+    { "id": 4, "name": "double", "show": false, "deck": 1, "selected": false },
+    { "id": 5, "name": "float", "show": false, "deck": 1, "selected": false },
+    { "id": 6, "name": "char", "show": false, "deck": 1, "selected": false },
+    { "id": 7, "name": "string", "show": false, "deck": 1, "selected": false },
+    { "id": 8, "name": "function", "show": false, "deck": 1, "selected": false },
+    { "id": 9, "name": "null", "show": false, "deck": 1, "selected": false },
+    { "id": 10, "name": "bug", "show": false, "deck": 1, "selected": false },
+    { "id": 11, "name": "for loop", "show": false, "deck" :1, "selected": false },
+    { "id": 12, "name": "class", "show": false, "deck": 1, "selected": false },
+    { "id": 13, "name": "c", "show": false, "deck": 1, "selected": false },
+    { "id": 14, "name": "c\"objective\"", "show": false, "deck": 1, "selected": false },
+    { "id": 15, "name": "c++", "show": false, "deck": 1, "selected": false }
+]

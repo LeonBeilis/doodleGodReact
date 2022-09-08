@@ -1,6 +1,10 @@
 import React, { createRef, useEffect, useRef, useState } from "react";
 import { Badge, Button, Card } from "react-bootstrap"
 import { CardListType, CardType } from "../../types/card.type";
+import './CardPreview.css'
+import combinationsJson from '../../data/combinations.json'
+
+const CombinationArray = combinationsJson as [number,number,number][];
 
 interface CardTypeInterface {
     card: CardType
@@ -11,24 +15,6 @@ interface CardTypeInterface {
 
 export const CardPreview = ({ card, setSelectedCards, selectedCards, setCards }: CardTypeInterface) => {
     const { name, id, selected } = card;
-
-    const combinationMap = [
-        [1, 1, 2],
-        [1, 2, 4],
-        [2, 2, 3],
-        [4, 3, 5],
-        [3, 3, 6],
-        [6, 6, 7],
-        [7, 7, 8],
-        [8, 1, 9],
-        [8, 7, 11],
-        [8, 9, 10],
-        [8, 8, 12],
-        [8, 12, 13],
-        [13, 13, 14],
-        [13, 14, 15],
-    ]
-
     const handleShow = (findId: number) => {
         setCards((prevCards: CardListType) => {
             const newCards = prevCards.map((cardItem: CardType) => {
@@ -64,7 +50,7 @@ export const CardPreview = ({ card, setSelectedCards, selectedCards, setCards }:
                 }
             }
 
-            combinationMap.map(s => {
+            CombinationArray.map(s => {
                 if (prevCard.id === s[0] && card.id === s[1] || prevCard.id === s[1] && card.id === s[0]) {
                     handleShow(s[2]);
                 }

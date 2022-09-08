@@ -9,4 +9,3 @@ export interface CardType {
 }
 
 export type CardListType = CardType[];
-export type CardListInRow = typeof Row;

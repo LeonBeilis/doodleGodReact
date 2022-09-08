@@ -2,38 +2,28 @@
 import logo from './logo.svg';
 import './App.css';
 import { ButtonToolbar, Col, Container, Row } from 'react-bootstrap';
-import { FC, useEffect, useRef, useState } from 'react';
+import { FC, useEffect, useMemo, useRef, useState } from 'react';
 import { CardListType, CardType } from './types/card.type';
 import { CardList } from './components/CardList/CardList';
 import React from 'react';
+import { Avatar } from './components/Avatar/Avatar';
+import elementsJson from './data/elements.json';
+import laughMouth from './assets/laugh_mouth.png';
+import avatar1 from './components/Avatar/avatarv1.png'
 
 // export const cardsHandlerProvider: FC = ({children}) => {
 //   const [deck, setDeck] = useState(selectedC)
 // }
 
-const gameData = [
-  { id: 1, name: 'boolean', show: true, deck: 1, selected: false },
-  { id: 2, name: 'int', show: false, deck: 1, selected: false },
-  { id: 3, name: 'BigInt', show: false, deck: 1, selected: false },
-  { id: 4, name: 'double', show: false, deck: 1, selected: false },
-  { id: 5, name: 'float', show: false, deck: 1, selected: false },
-  { id: 6, name: 'char', show: false, deck: 1, selected: false },
-  { id: 7, name: 'string', show: false, deck: 1, selected: false },
-  { id: 8, name: 'function', show: false, deck: 1, selected: false },
-  { id: 9, name: 'null', show: false, deck: 1, selected: false },
-  { id: 10, name: 'bug', show: false, deck: 1, selected: false },
-  { id: 11, name: 'for loop', show: false, deck: 1, selected: false },
-  { id: 12, name: 'class', show: false, deck: 1, selected: false },
-  { id: 13, name: 'c', show: false, deck: 1, selected: false },
-  { id: 14, name: 'c objective', show: false, deck: 1, selected: false },
-  { id: 15, name: 'c++', show: false, deck: 1, selected: false },
-]
-
+/**
+ * Todo:
+ * - later
+ */
 const App = () => {
   const [cards, setCards] = useState<CardListType>((() => {
-    const d = [...gameData];
+    const d = [...elementsJson];
     const deck2 = d.map(el => { return { ...el, deck: 2 }; })
-    const elements = [...gameData, ...deck2];
+    const elements = [...elementsJson, ...deck2];
     return elements;
   })());
   // console.log(cards)
@@ -65,20 +55,23 @@ const App = () => {
 
   return (
     <Container>
+      <div className="repeater_bg" style={{backgroundImage: `url(${avatar1})`, rotate: `25deg`}}></div>
+      <div className="repeater_bg" style={{backgroundImage: `url(${avatar1})`, rotate: `-25deg`}}></div>
+      <div id="logo">
+        <div id="laugher"><img src={laughMouth} /></div>
+        <Avatar/>
+      </div>
       <Row>
         <p>there are 15 in total, find them!</p>
-        {/* <p>You have discovered {discovered}/14</p> */}
       </Row>
-      {/* <cardsSelectedContext.Provider value={cardsSelectedContext}> */}
       <Row className='gameContainer'>
-        <Col sm={6}>
+        <Col sm={6} dir="rtl">
               <CardList cards={cards} setCards={setCards} selectedCards={selectedCards} setSelectedCards={setSelectedCards} deck={1} />
         </Col>
         <Col sm={6}>
               <CardList cards={cards} setCards={setCards} selectedCards={selectedCards} setSelectedCards={setSelectedCards} deck={2} />
         </Col>
       </Row>
-      {/* </cardsSelectedContext> */}
     </Container>
   )
 }

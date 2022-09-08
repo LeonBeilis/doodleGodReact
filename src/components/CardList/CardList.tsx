@@ -17,29 +17,18 @@ export const CardList = ({ cards, setCards, setSelectedCards, selectedCards, dec
         return card.deck === deck
     })
 
-
     return (
         <Row>
             {cardsByDeck.map((card: CardType, index) => {
-
-                // const cardContent = <CardPreview
-                //         key={index}
-                //         card={card}
-                //         setSelectedCards={setSelectedCards}
-                //         selectedCards={selectedCards}
-                //         setCards={setCards}
-                // />
-                // const layoutContent = index % 0 ? <Row><Col sm={6}>{cardContent}</Col> : <Col sm={6}>{cardContent}</Col></Row>
-
-                // return card.show ? cardContent : null
-                return card.show ? <Col key={index} xs={6} className={['text-center','my-2'].join(' ')}>
+                return card.show ?
+                    <Col key={index} xs={6}>
                         <CardPreview
                             card={card}
                             setSelectedCards={setSelectedCards}
                             selectedCards={selectedCards}
                             setCards={setCards}
                         />
-                        </Col> : null
+                    </Col> : null
             })}
         </Row>
     )
